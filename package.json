@@ -1,0 +1,15 @@
+{
+  "name": "marrakech-carnet",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Carnet de voyage Marrakech — PWA sécurisée par code d'accès, déployée sur Vercel.",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "dev": "vercel dev"
+  },
+  "dependencies": {
+    "cheerio": "^1.0.0"
+  }
+}
