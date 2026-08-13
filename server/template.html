@@ -522,6 +522,11 @@ tr.total-row td { font-weight: 700; background: var(--sand); }
 .hero-welcome { font-size: 13px; color: rgba(255,255,255,0.5); margin-bottom: 6px; }
 .hero-person { font-family: 'Playfair Display', serif; font-size: 17px; font-style: italic; color: rgba(255,255,255,0.9); margin-bottom: 20px; }
 
+.quick-nav { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 28px; }
+.quick-nav-btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; border-radius: 20px; border: 1px solid var(--border); background: var(--white); color: var(--atlas2); font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; transition: all 0.15s; }
+.quick-nav-btn .qn-icon { font-size: 15px; line-height: 1; }
+.quick-nav-btn:hover { background: var(--atlas-l); border-color: var(--atlas); color: var(--atlas); }
+
 html { scroll-behavior: smooth; }
 /* ══════════════════════════════════════════
    RESPONSIVE — MOBILE
@@ -768,7 +773,7 @@ html { scroll-behavior: smooth; }
       <div class="hero-welcome" id="heroWelcome"></div>
       <div class="hero-person" id="heroPerson"></div>
       <div class="hero-title">Marrakech 🇲🇦</div>
-      <div class="hero-sub">Grand-père nous offre le voyage — 12 personnes, 7 nuits, 3 voitures</div>
+      <div class="hero-sub">Noël en famille — 12 personnes, 7 nuits</div>
       <div class="hero-chips">
         <span class="hero-chip">✈️ EasyJet BOD → RAK</span>
         <span class="hero-chip">🏡 Dar Zitoune · Amizmiz</span>
@@ -778,12 +783,21 @@ html { scroll-behavior: smooth; }
       </div>
     </div>
 
+    <!-- Quick nav -->
+    <div class="quick-nav">
+      <button class="quick-nav-btn" onclick="scrollTo('vol-depart')"><span class="qn-icon">🛫</span>Départ</button>
+      <button class="quick-nav-btn" onclick="scrollTo('voitures')"><span class="qn-icon">🚗</span>Voitures</button>
+      <button class="quick-nav-btn" onclick="scrollTo('logement')"><span class="qn-icon">🏡</span>Logement</button>
+      <button class="quick-nav-btn" onclick="scrollTo('repas')"><span class="qn-icon">🍽️</span>Repas</button>
+      <button class="quick-nav-btn" onclick="scrollTo('vol-retour')"><span class="qn-icon">🛬</span>Retour</button>
+    </div>
+
     <!-- ── VOLS ── -->
     <section id="vols" class="section">
       <div class="section-eyebrow">Transport aérien</div>
       <div class="section-title">Vols EasyJet</div>
 
-      <div class="card">
+      <div class="card" id="vol-depart">
         <div class="card-header">
           <div class="card-icon ci-green" style="font-size:16px">→</div>
           <div>
@@ -812,7 +826,7 @@ html { scroll-behavior: smooth; }
         </div>
       </div>
 
-      <div class="card">
+      <div class="card" id="vol-retour">
         <div class="card-header">
           <div class="card-icon ci-sand" style="font-size:16px">←</div>
           <div>
