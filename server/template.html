@@ -532,15 +532,19 @@ html { scroll-behavior: smooth; }
    RESPONSIVE — MOBILE
 ══════════════════════════════════════════ */
 
-/* ── Bottom nav mobile ── */
-.mobile-nav {
+/* ── Top nav mobile (header + nav stacked, fixed to top) ── */
+.mobile-topbar {
   display: none;
   position: fixed;
-  bottom: 0; left: 0; right: 0;
+  top: 0; left: 0; right: 0;
   z-index: 200;
+  flex-direction: column;
+}
+.mobile-nav {
+  display: block;
   background: var(--atlas2);
-  border-top: 1px solid rgba(255,255,255,0.08);
-  padding: 8px 0 env(safe-area-inset-bottom, 8px);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  padding: 8px 0;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
@@ -576,10 +580,7 @@ html { scroll-behavior: smooth; }
 
 /* ── Mobile header ── */
 .mobile-header {
-  display: none;
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 200;
+  display: flex;
   background: var(--atlas2);
   border-bottom: 1px solid rgba(255,255,255,0.08);
   padding: 12px 16px 10px;
@@ -611,10 +612,10 @@ html { scroll-behavior: smooth; }
   .lock-title { font-size: 22px; }
 
   .sidebar { display: none !important; }
-  .mobile-nav { display: block; }
-  .mobile-header { display: flex; }
+  .mobile-topbar { display: flex; }
+  .card { scroll-margin-top: 122px; }
 
-  .main { margin-left: 0; padding: 72px 16px 90px; max-width: 100%; }
+  .main { margin-left: 0; padding: 122px 16px 32px; max-width: 100%; }
 
   .hero { padding: 20px 18px; border-radius: 12px; margin-bottom: 24px; }
   .hero-title { font-size: 26px; }
@@ -647,7 +648,7 @@ html { scroll-behavior: smooth; }
   .total-col:last-child { border-bottom: none; }
   .total-amount { font-size: 18px; }
 
-  .section { margin-bottom: 28px; scroll-margin-top: 70px; }
+  .section { margin-bottom: 28px; scroll-margin-top: 122px; }
   .section-title { font-size: 19px; }
 
   .budget-amount { font-size: 13px; }
@@ -666,8 +667,9 @@ html { scroll-behavior: smooth; }
 <body>
 
 
-<!-- ════ MOBILE HEADER ════ -->
-<div class="mobile-header" id="mobileHeader" style="display:none;">
+<!-- ════ MOBILE TOP NAV ════ -->
+<div class="mobile-topbar" id="mobileTopbar" style="display:none;">
+<div class="mobile-header" id="mobileHeader">
   <div class="mobile-header-brand">🇲🇦 Marrakech 2025</div>
   <div class="mobile-header-user">
     <div class="user-avatar" id="mobileAvatar" style="width:26px;height:26px;font-size:11px;"></div>
@@ -675,8 +677,7 @@ html { scroll-behavior: smooth; }
   </div>
 </div>
 
-<!-- ════ MOBILE BOTTOM NAV ════ -->
-<div class="mobile-nav" id="mobileNav" style="display:none;">
+<div class="mobile-nav" id="mobileNav">
   <div class="mobile-nav-inner">
     <button class="mobile-nav-btn active" data-section="vols"     onclick="scrollTo('vols')"><span class="mn-icon">✈️</span>Vols</button>
     <button class="mobile-nav-btn"        data-section="parking"  onclick="scrollTo('parking')"><span class="mn-icon">🅿️</span>Parking</button>
@@ -687,6 +688,7 @@ html { scroll-behavior: smooth; }
     <button class="mobile-nav-btn"        data-section="budget"   onclick="scrollTo('budget')" id="mobileNavBudget"><span class="mn-icon">💰</span>Budget</button>
     <button class="mobile-nav-btn"        data-section="finance"  onclick="scrollTo('finance')" id="mobileNavFinance"><span class="mn-icon">💳</span>Finances</button>
   </div>
+</div>
 </div>
 
 <!-- ════ LOCK SCREEN ════ -->
