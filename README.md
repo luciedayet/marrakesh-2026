@@ -1,16 +1,13 @@
 # Carnet de voyage — Marrakech
 
-Carnet de voyage privé (vols, logement, budget…) protégé par code d'accès à 4
+Carnet de voyage privé (vols, logement, repas…) protégé par code d'accès à 4
 chiffres, installable comme application (PWA), déployé sur Vercel.
 
 ## Pourquoi ce n'est plus un simple fichier HTML
 
-Le fichier d'origine intégrait la liste des codes PIN et tous les montants
-(budget, remboursements…) directement dans le JavaScript de la page : le
-masquage des prix pour les invités n'était qu'un flou CSS, contournable en un
-clic dans les outils de développement, et n'importe qui consultant le code
-source de la page — avant même de taper un code — pouvait lire tous les PIN
-et tous les montants.
+Le fichier d'origine intégrait la liste des codes PIN directement dans le
+JavaScript de la page : n'importe qui consultant le code source de la page —
+avant même de taper un code — pouvait lire tous les PIN.
 
 Ce projet corrige ça en déplaçant la vérification côté serveur :
 
@@ -23,9 +20,6 @@ Ce projet corrige ça en déplaçant la vérification côté serveur :
 - `POST /api/login` vérifie le code côté serveur et pose un cookie de
   session signé (HMAC, `HttpOnly`, `Secure`, `SameSite=Lax`) — le code n'est
   jamais renvoyé ni stocké côté client.
-- Pour les codes marqués `fullAccess: false`, les montants (`price-field`) et
-  les sections Budget / Suivi financier sont **retirés côté serveur** — pas
-  seulement cachés en CSS — avant l'envoi de la page.
 - Un limiteur de tentatives protège `/api/login` contre le bruteforce.
 
 ## Structure
@@ -36,7 +30,7 @@ api/login.js     → POST /api/login : vérifie le code, pose le cookie de sessi
 api/logout.js    → POST /api/logout : efface le cookie
 lib/session.js   → signature/vérification du cookie de session (HMAC)
 lib/accessCodes.js → lecture des codes depuis ACCESS_CODES (env)
-lib/renderPage.js  → construit le HTML envoyé (masquage des prix, sections restreintes, tags PWA)
+lib/renderPage.js  → construit le HTML envoyé (écran de code ou carnet, tags PWA)
 server/template.html → le carnet d'origine, gabarit **serveur uniquement** (jamais servi tel quel)
 public/          → manifest.json, icônes, service worker, page hors-ligne (statique, non sensible)
 ```
@@ -49,7 +43,7 @@ dans le dépôt) :
 | Variable | Description |
 |---|---|
 | `SESSION_SECRET` | Chaîne aléatoire longue (≥32 caractères) qui signe les cookies de session. Générer avec `node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"`. |
-| `ACCESS_CODES` | JSON `{ "PIN": { "name": "Prénom", "fullAccess": true\|false } }`. `fullAccess:true` voit les montants ; `false` voit tout le reste mais montants et onglets Budget/Finances masqués. |
+| `ACCESS_CODES` | JSON `{ "PIN": { "name": "Prénom", "fullAccess": true\|false } }`. `fullAccess` distingue simplement organisateurs et voyageurs (même contenu pour tous). |
 | `SESSION_MAX_AGE_DAYS` | Optionnel, durée de connexion en jours (défaut 60). |
 
 Voir `.env.example` pour le format exact (valeurs factices — à remplacer).

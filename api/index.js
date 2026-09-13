@@ -22,7 +22,7 @@ module.exports = (req, res) => {
   res.statusCode = 200;
   res.setHeader('Content-Type', 'text/html; charset=utf-8');
   // This page's content depends on the session cookie and can contain
-  // private trip/budget data — never let a shared cache serve it twice.
+  // private trip data — never let a shared cache serve it twice.
   res.setHeader('Cache-Control', 'private, no-store');
   res.end(html);
 };

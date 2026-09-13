@@ -1,7 +1,7 @@
 {
   "name": "Marrakech — Carnet de voyage",
   "short_name": "Marrakech",
-  "description": "Carnet de voyage privé — itinéraire, logement, budget.",
+  "description": "Carnet de voyage privé — itinéraire, logement, repas.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
