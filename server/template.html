@@ -310,7 +310,6 @@ body {
 .nav-item.active { color: #fff; border-left-color: var(--terrac); background: rgba(255,255,255,0.07); font-weight: 500; }
 .nav-item .icon { font-size: 15px; width: 18px; text-align: center; flex-shrink: 0; }
 .nav-item.hidden { display: none; }
-.nav-divider { height: 1px; background: rgba(255,255,255,0.08); margin: 8px 20px; }
 .sidebar-footer { margin-top: auto; padding: 0 20px; }
 .logout-btn {
   width: 100%;
@@ -418,14 +417,6 @@ body {
 /* ── Amenities ── */
 .amenities { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 10px; }
 .amenity { display: inline-flex; align-items: center; gap: 5px; padding: 5px 10px; border: 1px solid var(--border); border-radius: 20px; font-size: 12px; color: var(--muted); background: var(--white); }
-
-/* ── Checklist ── */
-.todo-item { display: flex; align-items: flex-start; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--border); }
-.todo-item:last-child { border-bottom: none; }
-.todo-check { flex-shrink: 0; width: 20px; height: 20px; border-radius: 5px; border: 2px solid var(--border); margin-top: 1px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.15s; font-size: 11px; }
-.todo-check.done { background: var(--atlas); border-color: var(--atlas); color: #fff; }
-.todo-title { font-size: 13px; font-weight: 600; }
-.todo-desc { font-size: 12px; color: var(--muted); margin-top: 2px; }
 
 /* ── Staff ── */
 .staff-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 10px; }
@@ -594,12 +585,11 @@ html { scroll-behavior: smooth; }
 
 <div class="mobile-nav" id="mobileNav">
   <div class="mobile-nav-inner">
-    <button class="mobile-nav-btn active" data-section="vols"     onclick="scrollTo('vols')"><span class="mn-icon">✈️</span>Vols</button>
-    <button class="mobile-nav-btn"        data-section="parking"  onclick="scrollTo('parking')"><span class="mn-icon">🅿️</span>Parking</button>
-    <button class="mobile-nav-btn"        data-section="voitures" onclick="scrollTo('voitures')"><span class="mn-icon">🚗</span>Voitures</button>
-    <button class="mobile-nav-btn"        data-section="logement" onclick="scrollTo('logement')"><span class="mn-icon">🏡</span>Logement</button>
-    <button class="mobile-nav-btn"        data-section="repas"    onclick="scrollTo('repas')"><span class="mn-icon">🍽️</span>Repas</button>
-    <button class="mobile-nav-btn"        data-section="todo"     onclick="scrollTo('todo')"><span class="mn-icon">📋</span>À faire</button>
+    <button class="mobile-nav-btn active" data-section="vols"     onclick="goToSection('vols')"><span class="mn-icon">✈️</span>Vols</button>
+    <button class="mobile-nav-btn"        data-section="parking"  onclick="goToSection('parking')"><span class="mn-icon">🅿️</span>Parking</button>
+    <button class="mobile-nav-btn"        data-section="voitures" onclick="goToSection('voitures')"><span class="mn-icon">🚗</span>Voitures</button>
+    <button class="mobile-nav-btn"        data-section="logement" onclick="goToSection('logement')"><span class="mn-icon">🏡</span>Logement</button>
+    <button class="mobile-nav-btn"        data-section="repas"    onclick="goToSection('repas')"><span class="mn-icon">🍽️</span>Repas</button>
   </div>
 </div>
 </div>
@@ -664,13 +654,11 @@ html { scroll-behavior: smooth; }
       </div>
     </div>
 
-    <a onclick="scrollTo('vols')"     data-section="vols"     class="nav-item active"><span class="icon">✈️</span> Vols</a>
-    <a onclick="scrollTo('parking')"  data-section="parking"  class="nav-item"><span class="icon">🅿️</span> Parking BOD</a>
-    <a onclick="scrollTo('voitures')" data-section="voitures" class="nav-item"><span class="icon">🚗</span> Voitures Maroc</a>
-    <a onclick="scrollTo('logement')" data-section="logement" class="nav-item"><span class="icon">🏡</span> Logement</a>
-    <a onclick="scrollTo('repas')"    data-section="repas"    class="nav-item"><span class="icon">🍽️</span> Repas</a>
-    <div class="nav-divider"></div>
-    <a onclick="scrollTo('todo')"     data-section="todo"     class="nav-item"><span class="icon">📋</span> À organiser</a>
+    <a onclick="goToSection('vols')"     data-section="vols"     class="nav-item active"><span class="icon">✈️</span> Vols</a>
+    <a onclick="goToSection('parking')"  data-section="parking"  class="nav-item"><span class="icon">🅿️</span> Parking BOD</a>
+    <a onclick="goToSection('voitures')" data-section="voitures" class="nav-item"><span class="icon">🚗</span> Voitures Maroc</a>
+    <a onclick="goToSection('logement')" data-section="logement" class="nav-item"><span class="icon">🏡</span> Logement</a>
+    <a onclick="goToSection('repas')"    data-section="repas"    class="nav-item"><span class="icon">🍽️</span> Repas</a>
 
     <div class="sidebar-footer">
       <button class="logout-btn" onclick="logout()">🔒 Se déconnecter</button>
@@ -698,11 +686,11 @@ html { scroll-behavior: smooth; }
 
     <!-- Quick nav -->
     <div class="quick-nav">
-      <button class="quick-nav-btn" onclick="scrollTo('vol-depart')"><span class="qn-icon">🛫</span>Départ</button>
-      <button class="quick-nav-btn" onclick="scrollTo('voitures')"><span class="qn-icon">🚗</span>Voitures</button>
-      <button class="quick-nav-btn" onclick="scrollTo('logement')"><span class="qn-icon">🏡</span>Logement</button>
-      <button class="quick-nav-btn" onclick="scrollTo('repas')"><span class="qn-icon">🍽️</span>Repas</button>
-      <button class="quick-nav-btn" onclick="scrollTo('vol-retour')"><span class="qn-icon">🛬</span>Retour</button>
+      <button class="quick-nav-btn" onclick="goToSection('vol-depart')"><span class="qn-icon">🛫</span>Départ</button>
+      <button class="quick-nav-btn" onclick="goToSection('voitures')"><span class="qn-icon">🚗</span>Voitures</button>
+      <button class="quick-nav-btn" onclick="goToSection('logement')"><span class="qn-icon">🏡</span>Logement</button>
+      <button class="quick-nav-btn" onclick="goToSection('repas')"><span class="qn-icon">🍽️</span>Repas</button>
+      <button class="quick-nav-btn" onclick="goToSection('vol-retour')"><span class="qn-icon">🛬</span>Retour</button>
     </div>
 
     <!-- ── VOLS ── -->
@@ -878,7 +866,7 @@ html { scroll-behavior: smooth; }
           <div class="card-icon" style="background:#EEEDFE;font-size:18px;">👩‍🍳</div>
           <div>
             <div class="card-ht">Cuisine marocaine traditionnelle</div>
-            <div class="card-hs">Règlement en espèces</div>
+            <div class="card-hs">Pension complète pour les 12 voyageurs</div>
           </div>
         </div>
         <div class="card-body">
@@ -888,50 +876,18 @@ html { scroll-behavior: smooth; }
           </div>
           <div class="meal-row">
             <div class="meal-badge" style="background:#FAEEDA;color:#854F0B;">🌤 Déjeuner</div>
-            <div class="meal-info"><div class="meal-name">Déjeuner</div><div class="meal-desc">Plats typiquement marocains</div></div>
+            <div class="meal-info"><div class="meal-name">Déjeuner</div><div class="meal-desc">Tajines, couscous et plats typiquement marocains</div></div>
           </div>
           <div class="meal-row">
             <div class="meal-badge" style="background:#EEEDFE;color:#534AB7;">🌙 Dîner</div>
             <div class="meal-info"><div class="meal-name">Dîner</div><div class="meal-desc">Plats typiquement marocains</div></div>
           </div>
-          <div class="warn-box">💵 Paiement en espèces. Prévoir dirhams ou euros.</div>
+          <div class="note-box">🛒 Courses faites par Hamouda au marché d'Amizmiz, au fil de la semaine.</div>
+          <div class="warn-box">🥗 Prévenir les cuisinières en amont en cas d'allergie ou de régime alimentaire particulier.</div>
         </div>
       </div>
     </section>
 
-    <!-- ── À ORGANISER ── -->
-    <section id="todo" class="section">
-      <div class="section-eyebrow">Check-list</div>
-      <div class="section-title">À organiser encore</div>
-      <div class="card">
-        <div class="card-body">
-          <div class="todo-item">
-            <div class="todo-check" onclick="this.classList.toggle('done');this.textContent=this.classList.contains('done')?'✓':''"></div>
-            <div><div class="todo-title">Virer l'acompte logement</div><div class="todo-desc">3 mois avant l'arrivée. Virement à la propriétaire amie. Obtenir une confirmation écrite.</div></div>
-          </div>
-          <div class="todo-item">
-            <div class="todo-check" onclick="this.classList.toggle('done');this.textContent=this.classList.contains('done')?'✓':''"></div>
-            <div><div class="todo-title">Réserver le parking P4 × 2 voitures</div><div class="todo-desc">En ligne sur le site de l'aéroport BOD. Noël très chargé — à faire vite !</div></div>
-          </div>
-          <div class="todo-item">
-            <div class="todo-check" onclick="this.classList.toggle('done');this.textContent=this.classList.contains('done')?'✓':''"></div>
-            <div><div class="todo-title">Organiser les 3 voitures au Maroc</div><div class="todo-desc">Location à l'aéroport RAK ou taxi collectif.</div></div>
-          </div>
-          <div class="todo-item">
-            <div class="todo-check" onclick="this.classList.toggle('done');this.textContent=this.classList.contains('done')?'✓':''"></div>
-            <div><div class="todo-title">Enregistrement en ligne EasyJet</div><div class="todo-desc">S'ouvre 30 jours avant le vol. Enregistrer les 12 voyageurs + 2 rangées côte à côte.</div></div>
-          </div>
-          <div class="todo-item">
-            <div class="todo-check" onclick="this.classList.toggle('done');this.textContent=this.classList.contains('done')?'✓':''"></div>
-            <div><div class="todo-title">Prévoir des espèces (dirhams / euros)</div><div class="todo-desc">Retrait à l'aéroport ou à Amizmiz.</div></div>
-          </div>
-          <div class="todo-item">
-            <div class="todo-check" onclick="this.classList.toggle('done');this.textContent=this.classList.contains('done')?'✓':''"></div>
-            <div><div class="todo-title">Vérifier les documents de voyage</div><div class="todo-desc">CNI ou passeport valide pour les 12 voyageurs. Passeport conseillé pour les enfants.</div></div>
-          </div>
-        </div>
-      </div>
-    </section>
 
 
   </main>
@@ -1026,26 +982,30 @@ function launchApp() {
 
   // Nav scroll highlight via data-section
   const sections = document.querySelectorAll('section[id]');
-  const navItems = document.querySelectorAll('.nav-item');
   const obs = new IntersectionObserver((entries) => {
+    if (Date.now() < manualNavUntil) return;
     entries.forEach(e => {
-      if (e.isIntersecting) {
-        navItems.forEach(n => n.classList.remove('active'));
-        const active = document.querySelector(`.nav-item[data-section="${e.target.id}"]`);
-        if (active) active.classList.add('active');
-      }
+      if (e.isIntersecting) setActiveSection(e.target.id);
     });
   }, { threshold: 0.25, rootMargin: '-60px 0px -60% 0px' });
   sections.forEach(s => obs.observe(s));
 }
 
-function scrollTo(id) {
+function setActiveSection(id) {
+  document.querySelectorAll('.nav-item, .mobile-nav-btn').forEach(n => n.classList.remove('active'));
+  document.querySelectorAll(`[data-section="${id}"]`).forEach(n => n.classList.add('active'));
+}
+
+// While a smooth scroll triggered by a click is in flight, the sections we
+// pass through also cross the observer's threshold and would otherwise
+// briefly steal the active state back before we land on the target.
+let manualNavUntil = 0;
+
+function goToSection(id) {
   const el = document.getElementById(id);
   if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  // Update active state immediately on click
-  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-  const clicked = document.querySelector(`.nav-item[data-section="${id}"]`);
-  if (clicked) clicked.classList.add('active');
+  setActiveSection(id);
+  manualNavUntil = Date.now() + 900;
 }
 
 function logout() {
