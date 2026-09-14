@@ -30,7 +30,7 @@ self.addEventListener('fetch', (event) => {
   const url = new URL(request.url);
 
   // The app shell ("/") and every /api/* call are per-session and can
-  // carry private trip/budget data — always hit the network, never cache.
+  // carry private trip data — always hit the network, never cache.
   if (url.pathname === '/' || url.pathname.startsWith('/api/')) {
     event.respondWith(fetch(request).catch(() => caches.match(OFFLINE_URL)));
     return;
