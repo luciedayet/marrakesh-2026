@@ -439,6 +439,8 @@ body {
 .hero-sub { font-size: 15px; color: rgba(255,255,255,0.65); margin-bottom: 20px; }
 .hero-chips { display: flex; flex-wrap: wrap; gap: 8px; }
 .hero-chip { display: inline-flex; align-items: center; gap: 6px; padding: 5px 13px; border-radius: 20px; font-size: 12px; background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.85); border: 1px solid rgba(255,255,255,0.15); }
+button.hero-chip { font-family: 'Inter', sans-serif; cursor: pointer; transition: background 0.15s, border-color 0.15s; }
+button.hero-chip:hover { background: rgba(255,255,255,0.18); border-color: rgba(255,255,255,0.3); }
 .hero-welcome { font-size: 13px; color: rgba(255,255,255,0.5); margin-bottom: 6px; }
 .hero-person { font-family: 'Playfair Display', serif; font-size: 17px; font-style: italic; color: rgba(255,255,255,0.9); margin-bottom: 20px; }
 
@@ -676,10 +678,10 @@ html { scroll-behavior: smooth; }
       <div class="hero-title">Marrakech 🇲🇦</div>
       <div class="hero-sub">Noël en famille — 12 personnes, 7 nuits</div>
       <div class="hero-chips">
-        <span class="hero-chip">✈️ EasyJet BOD → RAK</span>
-        <span class="hero-chip">🏡 Dar Zitoune · Amizmiz</span>
+        <button class="hero-chip" onclick="goToSection('vols')">✈️ EasyJet BOD → RAK</button>
+        <button class="hero-chip" onclick="goToSection('logement')">🏡 Dar Zitoune · Amizmiz</button>
         <span class="hero-chip">🗓️ 20 — 27 déc. 2025</span>
-        <span class="hero-chip">🚗 3 voitures</span>
+        <button class="hero-chip" onclick="goToSection('voitures')">🚗 3 voitures</button>
         <span class="hero-chip">👨‍👩‍👧‍👦 12 personnes</span>
       </div>
     </div>
