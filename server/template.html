@@ -363,6 +363,22 @@ body {
 .fl-bar::after { content: '✈'; position: absolute; top: -9px; left: 50%; transform: translateX(-50%); font-size: 14px; color: var(--atlas); }
 .fl-dur { font-size: 11px; color: var(--muted); }
 
+/* ── Seat map ── */
+.seatmap { display: flex; flex-direction: column; gap: 10px; margin-top: 4px; overflow-x: auto; padding-bottom: 2px; }
+.seatmap-row { display: flex; align-items: center; gap: 8px; width: max-content; }
+.seatmap-rownum { width: 18px; font-size: 11px; font-weight: 700; color: var(--muted); text-align: center; flex-shrink: 0; }
+.seatmap-block { display: flex; gap: 6px; }
+.seatmap-aisle { width: 16px; flex-shrink: 0; }
+.seat { width: 58px; padding: 6px 4px; border: 1.5px solid var(--border); border-radius: 8px; background: var(--sand); text-align: center; flex-shrink: 0; }
+.seat-id { display: block; font-size: 10px; font-weight: 700; color: var(--atlas); letter-spacing: 0.02em; }
+.seat-name { display: block; font-size: 11px; font-weight: 500; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.seat.seat-child { background: #FDF3E7; border-color: #E3A15C; }
+.seat.seat-child .seat-id { color: #B5692E; }
+.seatmap-legend { display: flex; gap: 14px; margin-top: 10px; font-size: 11px; color: var(--muted); }
+.seatmap-legend-item { display: flex; align-items: center; gap: 5px; }
+.seatmap-legend-swatch { width: 12px; height: 12px; border-radius: 4px; border: 1.5px solid var(--border); background: var(--sand); flex-shrink: 0; }
+.seatmap-legend-swatch.child { background: #FDF3E7; border-color: #E3A15C; }
+
 /* ── Info grid ── */
 .info-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 16px; }
 .info-cell { background: var(--sand); border-radius: 7px; padding: 10px 12px; }
@@ -560,6 +576,12 @@ html { scroll-behavior: smooth; }
   .rooms-grid { grid-template-columns: repeat(2, 1fr); }
   .staff-grid { grid-template-columns: 1fr; }
 
+  .seatmap-row { gap: 6px; }
+  .seatmap-block { gap: 4px; }
+  .seatmap-aisle { width: 10px; }
+  .seat { width: 42px; padding: 5px 2px; }
+  .seat-name { font-size: 10px; }
+
   .section { margin-bottom: 28px; scroll-margin-top: 122px; }
   .section-title { font-size: 19px; }
 }
@@ -753,6 +775,53 @@ html { scroll-behavior: smooth; }
             <div class="info-cell"><div class="info-label">Bagages soute</div><div class="info-val">6 valises (1 pour 2)</div></div>
           </div>
           <div class="note-box">🚗 Départ d'Amizmiz conseillé avant <strong>08h00</strong> pour être à RAK à 09h30.</div>
+        </div>
+      </div>
+
+      <div class="card" id="plan-cabine">
+        <div class="card-header">
+          <div class="card-icon" style="background:#EAF1FB;font-size:16px;">💺</div>
+          <div>
+            <div class="card-ht">Plan de cabine</div>
+            <div class="card-hs">Rangées 17 et 18 · 2 × 3 sièges côte à côte</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="seatmap">
+            <div class="seatmap-row">
+              <div class="seatmap-rownum">17</div>
+              <div class="seatmap-block">
+                <div class="seat"><span class="seat-id">17A</span><span class="seat-name" title="Patrick Dayet">Patrick</span></div>
+                <div class="seat"><span class="seat-id">17B</span><span class="seat-name" title="Éliane Dayet">Éliane</span></div>
+                <div class="seat"><span class="seat-id">17C</span><span class="seat-name" title="Renaud Dayet">Renaud</span></div>
+              </div>
+              <div class="seatmap-aisle"></div>
+              <div class="seatmap-block">
+                <div class="seat"><span class="seat-id">17D</span><span class="seat-name" title="Sandra Dayet">Sandra</span></div>
+                <div class="seat"><span class="seat-id">17E</span><span class="seat-name" title="Pierre Dayet">Pierre</span></div>
+                <div class="seat"><span class="seat-id">17F</span><span class="seat-name" title="Armelle Lantier">Armelle</span></div>
+              </div>
+            </div>
+            <div class="seatmap-row">
+              <div class="seatmap-rownum">18</div>
+              <div class="seatmap-block">
+                <div class="seat seat-child"><span class="seat-id">18A</span><span class="seat-name" title="Lola Dayet">Lola</span></div>
+                <div class="seat"><span class="seat-id">18B</span><span class="seat-name" title="Anaïs Dayet">Anaïs</span></div>
+                <div class="seat"><span class="seat-id">18C</span><span class="seat-name" title="Laure Meyer">Laure</span></div>
+              </div>
+              <div class="seatmap-aisle"></div>
+              <div class="seatmap-block">
+                <div class="seat"><span class="seat-id">18D</span><span class="seat-name" title="Thibault Morassin">Thibault</span></div>
+                <div class="seat"><span class="seat-id">18E</span><span class="seat-name" title="Lucie Dayet">Lucie</span></div>
+                <div class="seat seat-child"><span class="seat-id">18F</span><span class="seat-name" title="Jules Dayet">Jules</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="seatmap-legend">
+            <div class="seatmap-legend-item"><span class="seatmap-legend-swatch"></span>Adulte</div>
+            <div class="seatmap-legend-item"><span class="seatmap-legend-swatch child"></span>Enfant</div>
+          </div>
+          <div class="note-box">🎒 Un petit bagage à main par personne, sous le siège (max. 45 × 36 × 20 cm).</div>
         </div>
       </div>
     </section>
