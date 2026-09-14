@@ -310,6 +310,7 @@ body {
 .nav-item.active { color: #fff; border-left-color: var(--terrac); background: rgba(255,255,255,0.07); font-weight: 500; }
 .nav-item .icon { font-size: 15px; width: 18px; text-align: center; flex-shrink: 0; }
 .nav-item.hidden { display: none; }
+.nav-divider { height: 1px; background: rgba(255,255,255,0.08); margin: 8px 20px; }
 .sidebar-footer { margin-top: auto; padding: 0 20px; }
 .logout-btn {
   width: 100%;
@@ -440,6 +441,16 @@ body {
 .staff-name { font-size: 13px; font-weight: 600; }
 .staff-role { font-size: 11px; color: var(--atlas); font-weight: 500; margin-bottom: 4px; }
 .staff-desc { font-size: 12px; color: var(--muted); line-height: 1.5; }
+
+/* ── Checklist voyageurs ── */
+.milestone-grid { display: flex; flex-direction: column; gap: 10px; }
+.milestone-card { background: var(--white); border-radius: var(--r); border: 1px solid var(--border); overflow: hidden; }
+.milestone-header { display: flex; align-items: center; gap: 12px; padding: 14px 18px; }
+.milestone-tag { flex-shrink: 0; width: 52px; height: 30px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: 13px; font-weight: 700; color: #fff; }
+.milestone-title { font-size: 13px; font-weight: 600; }
+.milestone-list { list-style: none; padding: 0 18px 16px 66px; display: flex; flex-direction: column; gap: 8px; }
+.milestone-list li { position: relative; font-size: 13px; color: var(--text); line-height: 1.45; }
+.milestone-list li::before { content: ''; position: absolute; left: -16px; top: 7px; width: 6px; height: 6px; border-radius: 50%; background: var(--border); }
 
 /* ── Divider ── */
 .divider { height: 1px; background: var(--border); margin: 16px 0; }
@@ -614,6 +625,7 @@ html { scroll-behavior: smooth; }
     <button class="mobile-nav-btn"        data-section="voitures" onclick="goToSection('voitures')"><span class="mn-icon">🚗</span>Voitures</button>
     <button class="mobile-nav-btn"        data-section="logement" onclick="goToSection('logement')"><span class="mn-icon">🏡</span>Logement</button>
     <button class="mobile-nav-btn"        data-section="repas"    onclick="goToSection('repas')"><span class="mn-icon">🍽️</span>Repas</button>
+    <button class="mobile-nav-btn"        data-section="checklist" onclick="goToSection('checklist')"><span class="mn-icon">📋</span>Check-list</button>
   </div>
 </div>
 </div>
@@ -683,6 +695,8 @@ html { scroll-behavior: smooth; }
     <a onclick="goToSection('voitures')" data-section="voitures" class="nav-item"><span class="icon">🚗</span> Voitures Maroc</a>
     <a onclick="goToSection('logement')" data-section="logement" class="nav-item"><span class="icon">🏡</span> Logement</a>
     <a onclick="goToSection('repas')"    data-section="repas"    class="nav-item"><span class="icon">🍽️</span> Repas</a>
+    <div class="nav-divider"></div>
+    <a onclick="goToSection('checklist')" data-section="checklist" class="nav-item"><span class="icon">📋</span> Check-list</a>
 
     <div class="sidebar-footer">
       <button class="logout-btn" onclick="logout()">🔒 Se déconnecter</button>
@@ -957,7 +971,66 @@ html { scroll-behavior: smooth; }
       </div>
     </section>
 
-
+    <!-- ── CHECK-LIST VOYAGEURS ── -->
+    <section id="checklist" class="section">
+      <div class="section-eyebrow">Avant le départ</div>
+      <div class="section-title">Check-list voyageurs</div>
+      <div class="milestone-grid">
+        <div class="milestone-card">
+          <div class="milestone-header">
+            <div class="milestone-tag" style="background:#8B93A3;">M-3</div>
+            <div class="milestone-title">3 mois avant</div>
+          </div>
+          <ul class="milestone-list">
+            <li>Vérifier la validité du passeport ou de la carte d'identité (passeport conseillé pour les enfants).</li>
+          </ul>
+        </div>
+        <div class="milestone-card">
+          <div class="milestone-header">
+            <div class="milestone-tag" style="background:#5B8DB8;">M-1</div>
+            <div class="milestone-title">1 mois avant</div>
+          </div>
+          <ul class="milestone-list">
+            <li>Vérifier la trousse à pharmacie (antidouleur, anti-diarrhéique, pansements).</li>
+            <li>Prévoir des vêtements pour toutes les températures : chaud la journée, frais le soir au pied de l'Atlas.</li>
+            <li>Vérifier son forfait mobile / les options roaming au Maroc.</li>
+          </ul>
+        </div>
+        <div class="milestone-card">
+          <div class="milestone-header">
+            <div class="milestone-tag" style="background:#7B6FAE;">J-15</div>
+            <div class="milestone-title">15 jours avant</div>
+          </div>
+          <ul class="milestone-list">
+            <li>Faire les valises en respectant les franchises bagages (1 valise en soute pour 2 personnes).</li>
+            <li>Télécharger l'application EasyJet pour l'enregistrement en ligne.</li>
+            <li>Vérifier la météo à Amizmiz pour ajuster les affaires.</li>
+          </ul>
+        </div>
+        <div class="milestone-card">
+          <div class="milestone-header">
+            <div class="milestone-tag" style="background:#C97A1A;">J-1</div>
+            <div class="milestone-title">Veille du départ</div>
+          </div>
+          <ul class="milestone-list">
+            <li>Faire l'enregistrement en ligne EasyJet et vérifier son siège (voir le plan de cabine).</li>
+            <li>Préparer le bagage à main (1 par personne, sous le siège, max. 45 × 36 × 20 cm).</li>
+            <li>Réunir pièce d'identité et carte d'embarquement (papier ou téléphone chargé).</li>
+          </ul>
+        </div>
+        <div class="milestone-card">
+          <div class="milestone-header">
+            <div class="milestone-tag" style="background:var(--atlas);">J-J</div>
+            <div class="milestone-title">Jour J</div>
+          </div>
+          <ul class="milestone-list">
+            <li>Arriver à l'aéroport de Bordeaux-Mérignac avant 05h35.</li>
+            <li>Se présenter avec pièce d'identité et carte d'embarquement.</li>
+            <li>Retrouver le groupe près du parking P4.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
 
   </main>
 </div>
